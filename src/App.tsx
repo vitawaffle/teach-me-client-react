@@ -1,7 +1,8 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
 
-import { strings } from './localization';
+import router from './router';
 
-const App = () => <h1>{strings.applicationName}</h1>;
+const App = () => <RouterProvider router={router} />;
 
 export default App;
