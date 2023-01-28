@@ -1,5 +1,7 @@
 import React from 'react';
 
-const App = () => <h1>Teach Me</h1>;
+import { strings } from './localization';
+
+const App = () => <h1>{strings.applicationName}</h1>;
 
 export default App;
