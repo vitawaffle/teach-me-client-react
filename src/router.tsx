@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import { Home } from './pages';
+import { Error, NotFound } from './pages/errors';
 
 const router = createBrowserRouter([
   {
@@ -9,8 +10,22 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: 'error',
+    element: <Error />,
+    children: [
+      {
+        path: 'not-found',
+        element: <NotFound />,
+      },
+    ],
+  },
+  {
     path: '',
     element: <Navigate to="/home" />,
+  },
+  {
+    path: '*',
+    element: <Navigate to="/error/not-found" />
   },
 ]);
 
