@@ -1,5 +1,5 @@
 type WithChildrenProps = {
-  children: any;
+  children?: any;
 };
 
 export default WithChildrenProps;
