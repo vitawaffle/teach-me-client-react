@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Container from '../Container';
-import { strings } from '../../localization';
+import Container from './Container';
+import { strings } from '../localization';
 
 const Header = () => (
   <nav className="border-b mb-8 bg-white">

@@ -4,7 +4,7 @@ import Card from './Card';
 import Container from './Container';
 import List from './List';
 import LinkListItem from './LinkListItem';
-import { Header } from './header';
+import Header from './Header';
 import { strings } from '../localization';
 
 import type { WithChildrenProps } from '../props';
