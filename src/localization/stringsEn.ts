@@ -3,8 +3,10 @@ import LocaleTemplate from './LocaleTemplate';
 const stringsEn: LocaleTemplate = {
   applicationName: 'Teach Me',
   components: {
-    layout: {
-      home: 'Home',
+    header: {
+      logIn: 'Log in',
+      signIn: 'Sign in',
+      logOut: 'Log out',
     },
   },
   pages: {

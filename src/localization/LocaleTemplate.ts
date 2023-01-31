@@ -1,8 +1,10 @@
 type LocaleTemplate = {
   applicationName: string,
   components: {
-    layout: {
-      home: string,
+    header: {
+      logIn: string,
+      signIn: string,
+      logOut: string,
     },
   },
   pages: {

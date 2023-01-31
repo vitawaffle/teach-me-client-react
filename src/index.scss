@@ -34,4 +34,12 @@
   .btn-primary {
     @apply border-blue-400 bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 active:outline-blue-500;
   }
+
+  .link {
+    @apply font-semibold text-gray-800 p-1;
+  }
+
+  .link-primary {
+    @apply hover:text-blue-600 active:text-blue-700;
+  }
 }
