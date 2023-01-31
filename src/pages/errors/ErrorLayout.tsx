@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ErrorLayoutProps from './ErrorLayoutProps';
-import { Card } from '../../components';
 
 const ErrorLayout = ({
   code,
@@ -9,11 +8,11 @@ const ErrorLayout = ({
   message,
   children,
 }: ErrorLayoutProps) => (
-  <Card>
+  <div className="card">
     <h3 className="text-2xl mb-4">{code} - {name}</h3>
     <p className="mb-6">{message}</p>
     {children}
-  </Card>
+  </div>
 );
 
 export default ErrorLayout;

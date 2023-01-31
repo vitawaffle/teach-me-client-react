@@ -16,6 +16,14 @@ const stringsRu: LocaleTemplate = {
         toHome: 'На главную',
       },
     },
+    login: {
+      username: 'Имя пользователя',
+      password: 'Пароль',
+      logIn: 'Войти',
+    },
+  },
+  validation: {
+    required: 'Это поле обязательно',
   },
 };
 

@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .card {
+    @apply bg-white p-6 border rounded;
+  }
+
+  .form-control {
+    @apply flex flex-col;
+  }
+
+  .text-input {
+    @apply border p-2 rounded focus:outline focus:outline-2 focus:outline-blue-500;
+  }
+
+  .text-input_invalid {
+    @apply border-red-500 focus:outline-1 focus:outline-red-500;
+  }
+
+  .label {
+    @apply mb-1;
+  }
+
+  .invalid-feedback {
+    @apply text-red-500 text-xs;
+  }
+
+  .btn {
+    @apply border rounded px-4 py-2 font-bold active:outline active:outline-2;
+  }
+
+  .btn-primary {
+    @apply border-blue-400 bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 active:outline-blue-500;
+  }
+}

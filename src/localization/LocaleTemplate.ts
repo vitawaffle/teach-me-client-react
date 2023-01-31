@@ -13,6 +13,14 @@ type LocaleTemplate = {
         toHome: string,
       },
     },
+    login: {
+      username: string,
+      password: string,
+      logIn: string,
+    },
+  },
+  validation: {
+    required: string,
   },
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Card from './Card';
 import Container from './Container';
 import Header from './Header';
 
@@ -12,8 +11,8 @@ const Layout = ({ children }: ChildrenProps) => (
     <Container>
       <div className="flex gap-2">
         <div className="w-0 lg:w-4/12">
-          <Card>
-          </Card>
+          <div className="card">
+          </div>
         </div>
         <div className="w-full lg:w-4/12">
           {children}

@@ -16,6 +16,14 @@ const stringsEn: LocaleTemplate = {
         toHome: 'To Home',
       },
     },
+    login: {
+      username: 'Username',
+      password: 'Password',
+      logIn: 'Log in',
+    },
+  },
+  validation: {
+    required: 'This field is required',
   },
 };
 
