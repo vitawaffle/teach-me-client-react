@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -13,7 +13,7 @@ const LoginForm = () => {
     })),
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: FieldValues) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
