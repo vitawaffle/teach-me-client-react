@@ -1,1 +1,2 @@
-export type { default as WithChildrenProps } from './WithChildrenProps';
+export type { default as ChildrenProps } from './ChildrenProps';
+export type { default as ClassNameProps } from './ClassNameProps';

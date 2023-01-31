@@ -1,8 +1,8 @@
 import React from 'react';
 
-import type { WithChildrenProps } from '../props';
+import type { ChildrenProps } from '../props';
 
-const Card = ({ children }: WithChildrenProps) => (
+const Card = ({ children }: ChildrenProps) => (
   <div className="bg-white p-4 border rounded">
     {children}
   </div>

@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 type WithChildrenProps = {
-  children?: any;
+  children?: ReactNode;
 };
 
 export default WithChildrenProps;

@@ -1,6 +1,6 @@
-import type { WithChildrenProps } from '../../props';
+import type { ChildrenProps } from '../../props';
 
-type ErrorLayoutProps = WithChildrenProps & {
+type ErrorLayoutProps = ChildrenProps & {
   code: number,
   name: string,
   message: string,
