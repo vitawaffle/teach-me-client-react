@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { strings } from '../../localization';
+import client from '../../client';
 
 const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -13,21 +14,23 @@ const LoginForm = () => {
     })),
   });
 
-  const onSubmit = (data: FieldValues) => console.log(data);
+  const onSubmit = async ({ username, password }: FieldValues) => {
+    await client.post('/auth/login', {
+      username,
+      password,
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control">
-        <label htmlFor="username" className="label">
+        <label htmlFor="username">
           {strings.pages.login.username}
         </label>
         <input
           id="username"
-          className={
-            `text-input ${
-              errors.username ? 'text-input_invalid' : ''
-            }`
-          }
+          type="text"
+          className={errors.username ? 'invalid' : ''}
           {...register('username')}
         />
         {errors.username?.type === 'required' && (
@@ -37,17 +40,13 @@ const LoginForm = () => {
         )}
       </div>
       <div className="form-control mt-4">
-        <label htmlFor="password" className="label">
+        <label htmlFor="password">
           {strings.pages.login.password}
         </label>
         <input
           id="password"
           type="password"
-          className={
-            `text-input ${
-              errors.password ? 'text-input_invalid' : ''
-            }`
-          }
+          className={errors.password ? 'invalid' : ''}
           {...register('password')}
         />
         {errors.password?.type === 'required' && (
@@ -56,7 +55,7 @@ const LoginForm = () => {
           </div>
         )}
       </div>
-      <button type="submit" className="btn btn-primary mt-6">
+      <button type="submit" className="btn btn-primary mt-6 w-full">
         {strings.pages.login.logIn}
       </button>
     </form>

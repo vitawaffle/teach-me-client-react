@@ -16,12 +16,12 @@ const Header = () => {
             {strings.applicationName}
           </Link>
           {!isAuthenticated && (
-            <Link to="/signin" className="link link-primary">
+            <Link to="/signin" className="header-link">
               {strings.components.header.signIn}
             </Link>
           )}
           {!isAuthenticated && (
-            <Link to="/login" className="link link-primary">
+            <Link to="/login" className="header-link">
               {strings.components.header.logIn}
             </Link>
           )}

@@ -4,23 +4,23 @@
 
 @layer components {
   .card {
-    @apply bg-white p-6 border rounded;
+    @apply bg-white p-6 border rounded-lg;
   }
 
   .form-control {
     @apply flex flex-col;
   }
 
-  .text-input {
-    @apply border p-2 rounded focus:outline focus:outline-2 focus:outline-blue-500;
-  }
-
-  .text-input_invalid {
-    @apply border-red-500 focus:outline-1 focus:outline-red-500;
-  }
-
-  .label {
+  .form-control label {
     @apply mb-1;
+  }
+
+  .form-control input[type="text"], .form-control input[type="password"] {
+    @apply border p-2 rounded-lg focus:outline focus:outline-2 focus:outline-blue-500;
+  }
+
+  .form-control input[type="text"].invalid, .form-control input[type="password"].invalid {
+    @apply border-red-500 focus:outline-1 focus:outline-red-500;
   }
 
   .invalid-feedback {
@@ -28,18 +28,14 @@
   }
 
   .btn {
-    @apply border rounded px-4 py-2 font-bold active:outline active:outline-2;
+    @apply border rounded-lg px-4 py-2 font-bold active:outline active:outline-2;
   }
 
   .btn-primary {
-    @apply border-blue-400 bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 active:outline-blue-500;
+    @apply bg-blue-600 border-blue-500 text-white hover:bg-blue-700 active:bg-blue-800 active:outline-blue-500;
   }
 
-  .link {
-    @apply font-semibold text-gray-800 p-1;
-  }
-
-  .link-primary {
-    @apply hover:text-blue-600 active:text-blue-700;
+  .header-link {
+    @apply font-semibold text-gray-800 p-1 hover:text-blue-600 active:text-blue-700;
   }
 }
