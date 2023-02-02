@@ -23,9 +23,16 @@ const stringsEn: LocaleTemplate = {
       password: 'Password',
       logIn: 'Log in',
     },
+    signin: {
+      username: 'Username',
+      password: 'Password',
+      confirmPassword: 'Confirm password',
+      signIn: 'Sign in',
+    },
   },
   validation: {
     required: 'This field is required',
+    username: 'Invalid username format',
   },
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
+import yup from '../../yupExtensions';
 import { strings } from '../../localization';
 import client from '../../client';
 

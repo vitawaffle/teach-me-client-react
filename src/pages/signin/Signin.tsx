@@ -5,7 +5,9 @@ import { Layout } from '../../components';
 
 const Signin = () => (
   <Layout>
-    <SigninForm />
+    <div className="card">
+      <SigninForm />
+    </div>
   </Layout>
 );
 

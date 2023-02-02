@@ -23,9 +23,16 @@ const stringsRu: LocaleTemplate = {
       password: 'Пароль',
       logIn: 'Войти',
     },
+    signin: {
+      username: 'Имя пользователя',
+      password: 'Пароль',
+      confirmPassword: 'Повторите пароль',
+      signIn: 'Зарегистрироваться',
+    },
   },
   validation: {
     required: 'Это поле обязательно',
+    username: 'Неправильный формат имени пользователя',
   },
 };
 

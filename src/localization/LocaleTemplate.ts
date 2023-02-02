@@ -20,9 +20,16 @@ type LocaleTemplate = {
       password: string,
       logIn: string,
     },
+    signin: {
+      username: string,
+      password: string,
+      confirmPassword: string,
+      signIn: string,
+    },
   },
   validation: {
     required: string,
+    username: string,
   },
 };
 
