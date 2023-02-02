@@ -6,9 +6,9 @@ type AuthState = {
   isAuthenticated: boolean,
 };
 
-const initialState = {
+const initialState: AuthState = {
   isAuthenticated: false,
-} as AuthState;
+};
 
 const authSlice = createSlice({
   name: 'auth',
