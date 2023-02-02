@@ -33,6 +33,7 @@ const stringsRu: LocaleTemplate = {
   validation: {
     required: 'Это поле обязательно',
     username: 'Неправильный формат имени пользователя',
+    password: 'Неправильный формат пароля',
   },
 };
 

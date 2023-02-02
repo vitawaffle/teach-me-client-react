@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 
 import router from './router';
-import { useCheckIsAuthenticated, useGetPasswordRules } from './hooks';
+import { useCheckIsAuthenticated } from './hooks';
+import { useGetPasswordRules } from './validation/password';
 
 import type { ReactElement } from 'react';
 

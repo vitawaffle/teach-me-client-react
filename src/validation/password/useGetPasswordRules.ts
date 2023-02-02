@@ -1,13 +1,13 @@
-import client from '../client';
+import client from '../../client';
 import {
   useDispatch,
   useSelector,
   setPasswordRules,
   selectPasswordRules,
-} from '../redux';
-import { isSet } from '../utils';
+} from '../../redux';
+import { isSet } from '../../utils';
 
-import type { PasswordRules } from '../redux';
+import type { PasswordRules } from '../../redux';
 
 const useGetPasswordRules = (): () => Promise<PasswordRules> => {
   const dispatch = useDispatch();

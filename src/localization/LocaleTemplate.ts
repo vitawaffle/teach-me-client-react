@@ -30,6 +30,7 @@ type LocaleTemplate = {
   validation: {
     required: string,
     username: string,
+    password: string,
   },
 };
 

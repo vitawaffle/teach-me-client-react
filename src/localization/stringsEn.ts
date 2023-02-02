@@ -33,6 +33,7 @@ const stringsEn: LocaleTemplate = {
   validation: {
     required: 'This field is required',
     username: 'Invalid username format',
+    password: 'Invalid password format',
   },
 };
 

@@ -15,7 +15,9 @@ const SigninForm = (): ReactElement => {
       username: yup.string()
         .required()
         .username(),
-      password: yup.string().required(),
+      password: yup.string()
+        .password()
+        .required(),
       confirmedPassword: yup.string().required(),
     })),
   });
