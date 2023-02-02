@@ -13,6 +13,7 @@ yup.addMethod(yup.string, 'username', function (this) {
 });
 
 declare module 'yup' {
+  /* eslint-disable @typescript-eslint/consistent-type-definitions */
   interface StringSchema extends yup.BaseSchema {
     username: () => StringSchema;
   }

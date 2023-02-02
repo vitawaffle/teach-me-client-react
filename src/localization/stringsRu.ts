@@ -1,4 +1,4 @@
-import LocaleTemplate from './LocaleTemplate';
+import type LocaleTemplate from './LocaleTemplate';
 
 const stringsRu: LocaleTemplate = {
   applicationName: 'Teach Me',

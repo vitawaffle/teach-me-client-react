@@ -1,12 +1,16 @@
 import React from 'react';
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import yup from '../../yupExtensions';
 import { strings } from '../../localization';
 import client from '../../client';
+import { isSet } from '../../utils';
 
-const LoginForm = () => {
+import type { ReactElement } from 'react';
+import type { FieldValues } from 'react-hook-form';
+
+const LoginForm = (): ReactElement => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(yup.object().shape({
       username: yup.string().required(),
@@ -14,7 +18,10 @@ const LoginForm = () => {
     })),
   });
 
-  const onSubmit = async ({ username, password }: FieldValues) => {
+  const onSubmit = async ({
+    username,
+    password,
+  }: FieldValues): Promise<void> => {
     await client.post('/auth/login', {
       username,
       password,
@@ -22,7 +29,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={(): void => { handleSubmit(onSubmit); }}>
       <div className="form-control">
         <label htmlFor="username">
           {strings.pages.login.username}
@@ -30,7 +37,7 @@ const LoginForm = () => {
         <input
           id="username"
           type="text"
-          className={errors.username ? 'invalid' : ''}
+          className={isSet(errors.username) ? 'invalid' : ''}
           {...register('username')}
         />
         {errors.username?.type === 'required' && (
@@ -46,7 +53,7 @@ const LoginForm = () => {
         <input
           id="password"
           type="password"
-          className={errors.password ? 'invalid' : ''}
+          className={isSet(errors.password) ? 'invalid' : ''}
           {...register('password')}
         />
         {errors.password?.type === 'required' && (

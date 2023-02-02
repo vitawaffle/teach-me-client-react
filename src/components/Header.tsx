@@ -5,7 +5,9 @@ import Container from './Container';
 import { strings } from '../localization';
 import { useSelector, selectIsAuthenticated } from '../redux';
 
-const Header = () => {
+import type { ReactElement } from 'react';
+
+const Header = (): ReactElement => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
   return (

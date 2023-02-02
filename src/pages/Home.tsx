@@ -3,7 +3,9 @@ import React from 'react';
 import { strings } from '../localization';
 import { Layout } from '../components';
 
-const Home = () => (
+import type { ReactElement } from 'react';
+
+const Home = (): ReactElement => (
   <Layout>
     <div className="card">
       <h1 className="text-4xl">

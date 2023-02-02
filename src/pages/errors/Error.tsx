@@ -3,7 +3,9 @@ import { Outlet } from 'react-router-dom';
 
 import { Layout } from '../../components';
 
-const Error = () => (
+import type { ReactElement } from 'react';
+
+const Error = (): ReactElement => (
   <Layout>
     <Outlet />
   </Layout>

@@ -3,7 +3,9 @@ import React from 'react';
 import LoginForm from './LoginForm';
 import { Layout } from '../../components';
 
-const Login = () => (
+import type { ReactElement } from 'react';
+
+const Login = (): ReactElement => (
   <Layout>
     <div className="card">
       <LoginForm />

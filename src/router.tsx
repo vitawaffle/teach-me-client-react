@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Navigate to="/error/not-found" />
+    element: <Navigate to="/error/not-found" />,
   },
 ]);
 

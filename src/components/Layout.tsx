@@ -3,9 +3,11 @@ import React from 'react';
 import Container from './Container';
 import Header from './Header';
 
+import type { ReactElement } from 'react';
+
 import type { ChildrenProps } from '../props';
 
-const Layout = ({ children }: ChildrenProps) => (
+const Layout = ({ children }: ChildrenProps): ReactElement => (
   <>
     <Header />
     <Container>

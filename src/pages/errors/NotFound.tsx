@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import ErrorLayout from './ErrorLayout';
 import { strings } from '../../localization';
 
-const NotFound = () => (
+import type { ReactElement } from 'react';
+
+const NotFound = (): ReactElement => (
   <ErrorLayout
     code={404}
     name={strings.pages.errors.notFound.name}

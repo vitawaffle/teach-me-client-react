@@ -1,5 +1,5 @@
 type ClassNameProps = {
-  className?: string;
+  className?: string,
 };
 
 export default ClassNameProps;

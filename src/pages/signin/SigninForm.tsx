@@ -1,11 +1,15 @@
 import React from 'react';
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { strings } from '../../localization';
+import { isSet } from '../../utils';
 
-const SigninForm = () => {
+import type { ReactElement } from 'react';
+import type { FieldValues } from 'react-hook-form';
+
+const SigninForm = (): ReactElement => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(yup.object().shape({
       username: yup.string()
@@ -16,12 +20,12 @@ const SigninForm = () => {
     })),
   });
 
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit = (data: FieldValues): void => {
     console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={(): void => { handleSubmit(onSubmit); }}>
       <div className="form-control">
         <label htmlFor="username">
           {strings.pages.signin.username}
@@ -29,7 +33,7 @@ const SigninForm = () => {
         <input
           type="text"
           id="username"
-          className={errors.username ? 'invalid' : ''}
+          className={isSet(errors.username) ? 'invalid' : ''}
           {...register('username')}
         />
         {errors.username?.type === 'required' && (
@@ -50,7 +54,7 @@ const SigninForm = () => {
         <input
           type="password"
           id="password"
-          className={errors.password ? 'invalid' : ''}
+          className={isSet(errors.password) ? 'invalid' : ''}
           {...register('password')}
         />
         {errors.password?.type === 'required' && (
@@ -66,7 +70,7 @@ const SigninForm = () => {
         <input
           type="password"
           id="confirmedPassword"
-          className={errors.confirmedPassword ? 'invalid' : ''}
+          className={isSet(errors.confirmedPassword) ? 'invalid' : ''}
           {...register('confirmedPassword')}
         />
         {errors.confirmedPassword?.type === 'required' && (

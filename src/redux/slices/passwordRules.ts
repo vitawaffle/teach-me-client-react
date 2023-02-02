@@ -1,6 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import type { RootState} from '../store';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+import type { RootState } from '../store';
 
 export type PasswordRules = {
   [ruleName: string]: boolean | number,
@@ -18,7 +20,7 @@ const passwordRulesSlice = createSlice({
   reducers: {
     setPasswordRules: (
       state: PasswordRulesState,
-      { payload }: PayloadAction<PasswordRules>
+      { payload }: PayloadAction<PasswordRules>,
     ) => {
       state.passwordRules = payload;
     },
@@ -28,6 +30,7 @@ const passwordRulesSlice = createSlice({
 export const { setPasswordRules } = passwordRulesSlice.actions;
 
 export const selectPasswordRules
-  = (state: RootState) => state.passwordRules.passwordRules;
+  = (state: RootState): PasswordRules | undefined =>
+    state.passwordRules.passwordRules;
 
 export default passwordRulesSlice.reducer;
