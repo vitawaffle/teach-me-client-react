@@ -2,9 +2,8 @@ import * as yup from 'yup';
 
 import { strings } from './localization';
 import { isSet } from './utils';
-import { useGetActiveRules } from './validation/password';
 
-import type { Rule } from './validation/password';
+import type Rule from './validation/password/Rule';
 
 yup.addMethod(yup.string, 'username', function (this) {
   return this.test(
@@ -15,18 +14,17 @@ yup.addMethod(yup.string, 'username', function (this) {
   );
 });
 
-yup.addMethod(yup.string, 'password', function (this) {
+yup.addMethod(yup.string, 'password', function (
+  this,
+  getPasswordRules: () => Promise<Rule[]>,
+) {
   return this.test(
     'password',
     strings.validation.password,
     async (value?: string): Promise<boolean> => {
-      const getActiveRules = useGetActiveRules();
-      const rules = await getActiveRules();
-      return rules.map(
-        (rule: Rule) => !isSet(value) || rule.isValid(value as string),
-      ).filter(
-        (isValid: boolean) => !isValid,
-      ).length === 0;
+      const rules = await getPasswordRules();
+      return !isSet(value)
+        || rules.filter(rule => !rule.isValid(value as string)).length === 0;
     },
   );
 });
@@ -35,7 +33,7 @@ declare module 'yup' {
   /* eslint-disable @typescript-eslint/consistent-type-definitions */
   interface StringSchema extends yup.BaseSchema {
     username: () => StringSchema;
-    password: () => StringSchema;
+    password: (getPasswordRules: () => Promise<Rule[]>) => StringSchema;
   }
 }
 

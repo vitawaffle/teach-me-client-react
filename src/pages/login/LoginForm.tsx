@@ -28,8 +28,9 @@ const LoginForm = (): ReactElement => {
     });
   };
 
+  /* eslint-disable @typescript-eslint/no-misused-promises */
   return (
-    <form onSubmit={(): void => { handleSubmit(onSubmit); }}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control">
         <label htmlFor="username">
           {strings.pages.login.username}

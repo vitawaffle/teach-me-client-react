@@ -1,6 +1,6 @@
 type Rule = {
-  isValid: (value: string) => boolean,
   getName: () => string,
+  isValid: (value: string) => boolean,
 };
 
 export default Rule;

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useGetPasswordRules } from '../../hooks';
 import { strings } from '../../localization';
 import { isSet } from '../../utils';
 
@@ -10,14 +11,16 @@ import type { ReactElement } from 'react';
 import type { FieldValues } from 'react-hook-form';
 
 const SigninForm = (): ReactElement => {
+  const getPasswordRules = useGetPasswordRules();
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(yup.object().shape({
       username: yup.string()
         .required()
         .username(),
       password: yup.string()
-        .password()
-        .required(),
+        .required()
+        .password(getPasswordRules),
       confirmedPassword: yup.string().required(),
     })),
   });
@@ -26,8 +29,9 @@ const SigninForm = (): ReactElement => {
     console.log(data);
   };
 
+  /* eslint-disable @typescript-eslint/no-misused-promises */
   return (
-    <form onSubmit={(): void => { handleSubmit(onSubmit); }}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control">
         <label htmlFor="username">
           {strings.pages.signin.username}
@@ -62,6 +66,11 @@ const SigninForm = (): ReactElement => {
         {errors.password?.type === 'required' && (
           <div className="invalid-feedback">
             {strings.validation.required}
+          </div>
+        )}
+        {errors.password?.type === 'password' && (
+          <div className="invalid-feedback">
+            {strings.validation.password}
           </div>
         )}
       </div>
