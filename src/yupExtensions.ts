@@ -29,6 +29,18 @@ yup.addMethod(yup.string, 'password', function (
   );
 });
 
+yup.addMethod(yup.string, 'unique', function (
+  this,
+  collection: string,
+  errorMessage?: string,
+) {
+  return this.test(
+    'unique',
+    errorMessage !== undefined ? errorMessage : strings.validation.unique,
+    async (value?: string): Promise<boolean> => false,
+  );
+});
+
 declare module 'yup' {
   /* eslint-disable @typescript-eslint/consistent-type-definitions */
   interface StringSchema extends yup.BaseSchema {

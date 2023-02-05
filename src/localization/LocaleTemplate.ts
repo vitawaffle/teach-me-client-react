@@ -31,6 +31,7 @@ type LocaleTemplate = {
     required: string,
     username: string,
     password: string,
+    unique: string,
   },
 };
 
