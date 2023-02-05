@@ -17,7 +17,8 @@ const SigninForm = (): ReactElement => {
     resolver: yupResolver(yup.object().shape({
       username: yup.string()
         .required()
-        .username(),
+        .username()
+        .unique('usernames'),
       password: yup.string()
         .required()
         .password(getPasswordRules),
@@ -50,6 +51,11 @@ const SigninForm = (): ReactElement => {
         {errors.username?.type === 'username' && (
           <div className="invalid-feedback">
             {strings.validation.username}
+          </div>
+        )}
+        {errors.username?.type === 'unique' && (
+          <div className="invalid-feedback">
+            {strings.validation.unique}
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@ import * as yup from 'yup';
 
 import { strings } from './localization';
 import { isSet } from './utils';
+import client from './client';
 
 import type Rule from './validation/password/Rule';
 
@@ -10,6 +11,7 @@ yup.addMethod(yup.string, 'username', function (this) {
     'username',
     strings.validation.username,
     (value?: string): boolean => !isSet(value)
+      || value === ''
       || /^[a-zA-Z0-9_]{1,32}$/.test(value as string),
   );
 });
@@ -24,6 +26,7 @@ yup.addMethod(yup.string, 'password', function (
     async (value?: string): Promise<boolean> => {
       const rules = await getPasswordRules();
       return !isSet(value)
+        || value === ''
         || rules.filter(rule => !rule.isValid(value as string)).length === 0;
     },
   );
@@ -37,7 +40,19 @@ yup.addMethod(yup.string, 'unique', function (
   return this.test(
     'unique',
     errorMessage !== undefined ? errorMessage : strings.validation.unique,
-    async (value?: string): Promise<boolean> => false,
+    async (value?: string): Promise<boolean> => {
+      if (!isSet(value) || value === '') {
+        return true;
+      }
+
+      try {
+        return !(await client.get<boolean>(
+          `/${collection}/exists/${value as string}`,
+        )).data;
+      } catch (error) {
+        return true;
+      }
+    },
   );
 });
 
@@ -46,6 +61,7 @@ declare module 'yup' {
   interface StringSchema extends yup.BaseSchema {
     username: () => StringSchema;
     password: (getPasswordRules: () => Promise<Rule[]>) => StringSchema;
+    unique: (collection: string) => StringSchema;
   }
 }
 
