@@ -22,6 +22,7 @@ const stringsRu: LocaleTemplate = {
       username: 'Имя пользователя',
       password: 'Пароль',
       logIn: 'Войти',
+      invalidCredentials: 'Неверные учётные данные',
     },
     signin: {
       username: 'Имя пользователя',

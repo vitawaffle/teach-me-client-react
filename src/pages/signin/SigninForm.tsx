@@ -1,11 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useGetPasswordRules } from '../../hooks';
+import { useGetPasswordRules, useCheckIsAuthenticated } from '../../hooks';
 import { strings } from '../../localization';
 import { isSet } from '../../utils';
+import client from '../../client';
 
 import type { ReactElement } from 'react';
 import type { FieldValues } from 'react-hook-form';
@@ -31,8 +33,21 @@ const SigninForm = (): ReactElement => {
     })),
   });
 
-  const onSubmit = (data: FieldValues): void => {
-    console.log(data);
+  const checkIsAuthenticated = useCheckIsAuthenticated();
+  const navigate = useNavigate();
+
+  const onSubmit = async ({
+    username,
+    password,
+  }: FieldValues): Promise<void> => {
+    await client.post('/auth/signin', {
+      username,
+      password,
+    });
+
+    await checkIsAuthenticated();
+
+    navigate('/login');
   };
 
   /* eslint-disable @typescript-eslint/no-misused-promises */

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import yup from '../../yupExtensions';
 import { strings } from '../../localization';
-import client from '../../client';
 import { isSet } from '../../utils';
+import { useCheckIsAuthenticated } from '../../hooks';
+import client from '../../client';
+import yup from '../../yupExtensions';
 
 import type { ReactElement } from 'react';
 import type { FieldValues } from 'react-hook-form';
@@ -18,14 +20,32 @@ const LoginForm = (): ReactElement => {
     })),
   });
 
+  const [isInvalidCredentials, setIsInvalidCredentials] = useState(false);
+  const checkIsAuthenticated = useCheckIsAuthenticated();
+  const navigate = useNavigate();
+
   const onSubmit = async ({
     username,
     password,
   }: FieldValues): Promise<void> => {
-    await client.post('/auth/login', {
-      username,
-      password,
-    });
+    setIsInvalidCredentials(false);
+
+    try {
+      localStorage.setItem(
+        'accessToken',
+        (await client.post<{ token: string }>('/auth/login', {
+          username,
+          password,
+        })).data.token,
+      );
+    } catch (error) {
+      setIsInvalidCredentials(true);
+      return;
+    }
+
+    await checkIsAuthenticated();
+
+    navigate('/home');
   };
 
   /* eslint-disable @typescript-eslint/no-misused-promises */
@@ -38,7 +58,11 @@ const LoginForm = (): ReactElement => {
         <input
           id="username"
           type="text"
-          className={isSet(errors.username) ? 'invalid' : ''}
+          className={
+            isSet(errors.username) || isInvalidCredentials
+              ? 'invalid'
+              : ''
+          }
           {...register('username')}
         />
         {errors.username?.type === 'required' && (
@@ -54,12 +78,21 @@ const LoginForm = (): ReactElement => {
         <input
           id="password"
           type="password"
-          className={isSet(errors.password) ? 'invalid' : ''}
+          className={
+            isSet(errors.password) || isInvalidCredentials
+              ? 'invalid'
+              : ''
+          }
           {...register('password')}
         />
         {errors.password?.type === 'required' && (
           <div className="invalid-feedback">
             {strings.validation.required}
+          </div>
+        )}
+        {isInvalidCredentials && (
+          <div className="invalid-feedback">
+            {strings.pages.login.invalidCredentials}
           </div>
         )}
       </div>

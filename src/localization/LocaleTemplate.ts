@@ -19,6 +19,7 @@ type LocaleTemplate = {
       username: string,
       password: string,
       logIn: string,
+      invalidCredentials: string,
     },
     signin: {
       username: string,

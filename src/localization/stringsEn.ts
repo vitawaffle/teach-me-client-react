@@ -22,6 +22,7 @@ const stringsEn: LocaleTemplate = {
       username: 'Username',
       password: 'Password',
       logIn: 'Log in',
+      invalidCredentials: 'Invalid credentials',
     },
     signin: {
       username: 'Username',
