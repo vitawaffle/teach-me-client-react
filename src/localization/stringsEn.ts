@@ -35,6 +35,7 @@ const stringsEn: LocaleTemplate = {
     username: 'Invalid username format',
     password: 'Invalid password format',
     unique: 'This value should be unique',
+    passwordMismatch: 'Password mismatch',
   },
 };
 

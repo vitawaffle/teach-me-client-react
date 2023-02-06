@@ -35,6 +35,7 @@ const stringsRu: LocaleTemplate = {
     username: 'Неправильный формат имени пользователя',
     password: 'Неправильный формат пароля',
     unique: 'Это значение должно быть уникальным',
+    passwordMismatch: 'Пароли не совпадают',
   },
 };
 

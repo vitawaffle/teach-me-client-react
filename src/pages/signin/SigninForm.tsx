@@ -22,7 +22,12 @@ const SigninForm = (): ReactElement => {
       password: yup.string()
         .required()
         .password(getPasswordRules),
-      confirmedPassword: yup.string().required(),
+      confirmedPassword: yup.string()
+        .required()
+        .oneOf(
+          [yup.ref('password'), null],
+          strings.validation.passwordMismatch,
+        ),
     })),
   });
 
@@ -93,6 +98,11 @@ const SigninForm = (): ReactElement => {
         {errors.confirmedPassword?.type === 'required' && (
           <div className="invalid-feedback">
             {strings.validation.required}
+          </div>
+        )}
+        {errors.confirmedPassword?.type === 'oneOf' && (
+          <div className="invalid-feedback">
+            {strings.validation.passwordMismatch}
           </div>
         )}
       </div>

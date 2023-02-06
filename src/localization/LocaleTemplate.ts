@@ -32,6 +32,7 @@ type LocaleTemplate = {
     username: string,
     password: string,
     unique: string,
+    passwordMismatch: string,
   },
 };
 
