@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 import { strings } from './localization';
-import { isSet } from './utils';
+import { isBlank } from './utils';
 import client from './client';
 
 import type Rule from './validation/password/Rule';
@@ -10,8 +10,7 @@ yup.addMethod(yup.string, 'username', function (this) {
   return this.test(
     'username',
     strings.validation.username,
-    (value?: string): boolean => !isSet(value)
-      || value === ''
+    (value?: string): boolean => isBlank(value)
       || /^[a-zA-Z0-9_]{1,32}$/.test(value as string),
   );
 });
@@ -25,8 +24,7 @@ yup.addMethod(yup.string, 'password', function (
     strings.validation.password,
     async (value?: string): Promise<boolean> => {
       const rules = await getPasswordRules();
-      return !isSet(value)
-        || value === ''
+      return isBlank(value)
         || rules.filter(rule => !rule.isValid(value as string)).length === 0;
     },
   );
@@ -41,7 +39,7 @@ yup.addMethod(yup.string, 'unique', function (
     'unique',
     errorMessage !== undefined ? errorMessage : strings.validation.unique,
     async (value?: string): Promise<boolean> => {
-      if (!isSet(value) || value === '') {
+      if (isBlank(value)) {
         return true;
       }
 
